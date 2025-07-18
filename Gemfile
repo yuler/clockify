@@ -6,7 +6,7 @@ gem "rails", "~> 8.0.0"
 
 # Drivers
 # gem "sqlite3", ">= 2.1"
-# gem "pg", "~> 1.5"
+gem "pg", "~> 1.5"
 
 # Deployment
 gem "puma", ">= 5.0"
@@ -18,7 +18,7 @@ gem "kamal", require: false
 gem "propshaft"
 # gem "jsbundling-rails"
 # gem "cssbundling-rails"
-# gem "tailwindcss-rails"
+gem "tailwindcss-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 
