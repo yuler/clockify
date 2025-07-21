@@ -82,8 +82,10 @@ production:
   primary: &primary_production
     <<: *default
     database: clockify_production
-    username: clockify
-    password: <%= ENV["CLOCKIFY_DATABASE_PASSWORD"] %>
+    host: <%= ENV.fetch("CLOCKIFY_DATABASE_HOST", nil) %>
+    port: <%= ENV.fetch("CLOCKIFY_DATABASE_PORT", nil) %>
+    username: <%= ENV.fetch("CLOCKIFY_DATABASE_USERNAME", nil) %>
+    password: <%= ENV.fetch("CLOCKIFY_DATABASE_PASSWORD", nil) %>
   cache:
     <<: *primary_production
     database: clockify_production_cache
