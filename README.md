@@ -8,6 +8,9 @@
 - [ ] Define `project` model, User can create projet
 - [ ] Define `track` model, user can share & green wall
 - [ ] OSS?
+- [ ] Home langding page
 - [ ] Config kamal deploy
 - [ ] Expore some APIs
 - [ ] Add wedget js for other website quick include
+- [ ] Explore
+- [ ] Team
