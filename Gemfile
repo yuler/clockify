@@ -6,7 +6,7 @@ gem "rails", "~> 8.0.0"
 
 # Drivers
 # gem "sqlite3", ">= 2.1"
-gem "pg", "~> 1.5"
+gem "pg", "~> 1.6"
 
 # Deployment
 gem "puma", ">= 5.0"
