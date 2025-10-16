@@ -86,7 +86,10 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    url: <%= ENV["CLOCKIFY_DATABASE_URL"] %>
+    host: <%= ENV["DB_HOST"] %>
+    username: <%= ENV["DB_USERNAME"] %>
+    password: <%= ENV["DB_PASSWORD"] %>
+    database: clockify_production
   cache:
     <<: *primary_production
     database: clockify_production_cache
