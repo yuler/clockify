@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_16_060802) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_24_080000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -23,6 +23,48 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_16_060802) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "task_entries", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
+    t.string "operation", limit: 20, default: "increment", null: false
+    t.decimal "value", precision: 10, scale: 2, null: false
+    t.decimal "value_before", precision: 10, scale: 2, null: false
+    t.decimal "value_after", precision: 10, scale: 2, null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_at"], name: "index_task_entries_on_created_at"
+    t.index ["task_id", "created_at"], name: "index_task_entries_on_task_id_and_created_at"
+    t.index ["task_id"], name: "index_task_entries_on_task_id"
+    t.index ["user_id", "created_at"], name: "index_task_entries_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_task_entries_on_user_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "type", null: false
+    t.string "name", limit: 100, null: false
+    t.text "slogan"
+    t.string "theme_emoji", limit: 10
+    t.string "theme_color", limit: 7
+    t.decimal "target_value", precision: 10, scale: 2
+    t.decimal "current_value", precision: 10, scale: 2, default: "0.0", null: false
+    t.decimal "step_value", precision: 10, scale: 2, default: "1.0", null: false
+    t.string "step_unit", limit: 50
+    t.string "cycle_reset_type", limit: 20, default: "none", null: false
+    t.integer "cycle_reset_days"
+    t.date "cycle_reset_next_on"
+    t.datetime "cycle_reset_last_at"
+    t.string "status", limit: 20, default: "active", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cycle_reset_next_on"], name: "index_tasks_on_cycle_reset_next_on"
+    t.index ["user_id", "status"], name: "index_tasks_on_user_id_and_status"
+    t.index ["user_id", "type"], name: "index_tasks_on_user_id_and_type"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest", null: false
@@ -32,4 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_16_060802) do
   end
 
   add_foreign_key "sessions", "users"
+  add_foreign_key "task_entries", "tasks"
+  add_foreign_key "task_entries", "users"
+  add_foreign_key "tasks", "users"
 end
