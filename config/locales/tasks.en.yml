@@ -27,6 +27,7 @@ en:
       decrement: "Decrement"
       set: "Set"
       operation_hint: "Increment: Add to current value • Decrement: Subtract from current value • Set: Set to specific value"
+      guest_view_message: "You are viewing this task as a guest. Only the task owner can modify values."
     
     index:
       subtitle:
