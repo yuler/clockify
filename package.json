@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "./bin/dev",
     "setup": "./bin/setup",
-    "build": "bun bun.config.js"
+    "build": "bun bun.config.js",
+    "db:recreate": "bin/rails db:drop db:create db:migrate"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",

@@ -1,12 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-numerical_task:
-  user: one
-  type: NumericalTask
+numerical:
   name: Flowers
-  theme_emoji: 🌺
-  theme_color: "#000000"
-  target_value: 0.00
-  current_value: 0.00
-  step_value: 1.00
-  step_unit: 
+  slogan: I love flowers
+  emoji: 🌺
+  background: "#000000"
+  user: yuler
+  taskable: one (NumericalTask)
