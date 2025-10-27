@@ -1,1 +1,117 @@
-<h1>Welcome to Clockify</h1>
+<!-- Hero Section -->
+<div class="hero min-h-screen bg-base-100">
+  <div class="hero-content text-center">
+    <div class="max-w-4xl">
+      <h1 class="text-6xl font-bold mb-8 bg-gradient-to-r from-neutral to-neutral-content bg-clip-text text-transparent">
+        <%= t('welcome.hero.title') %>
+      </h1>
+      <p class="text-xl mb-8 text-base-content/80">
+        <%= t('welcome.hero.subtitle') %>
+      </p>
+      <div class="flex gap-4 justify-center mb-12">
+        <a href="/tasks" class="btn btn-neutral btn-lg">
+          <%= t('common.get_started') %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </a>
+        <a href="#features" class="btn btn-outline btn-lg"><%= t('common.learn_more') %></a>
+      </div>
+      
+      <!-- Stats -->
+      <div class="stats stats-vertical lg:stats-horizontal shadow-xl bg-base-200">
+        <div class="stat">
+          <div class="stat-title"><%= t('welcome.stats.simple.title') %></div>
+          <div class="stat-value"><%= t('welcome.stats.simple.value') %></div>
+          <div class="stat-desc"><%= t('welcome.stats.simple.description') %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title"><%= t('welcome.stats.fast.title') %></div>
+          <div class="stat-value"><%= t('welcome.stats.fast.value') %></div>
+          <div class="stat-desc"><%= t('welcome.stats.fast.description') %></div>
+        </div>
+        <div class="stat">
+          <div class="stat-title"><%= t('welcome.stats.focused.title') %></div>
+          <div class="stat-value"><%= t('welcome.stats.focused.value') %></div>
+          <div class="stat-desc"><%= t('welcome.stats.focused.description') %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features Section -->
+<div id="features" class="py-24 bg-base-200">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16"><%= t('welcome.features.title') %></h2>
+    
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <!-- Feature 1 -->
+      <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body items-center text-center">
+          <div class="w-16 h-16 rounded-full bg-neutral text-neutral-content flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 class="card-title"><%= t('welcome.features.time_tracking.title') %></h3>
+          <p class="text-base-content/70">
+            <%= t('welcome.features.time_tracking.description') %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body items-center text-center">
+          <div class="w-16 h-16 rounded-full bg-neutral text-neutral-content flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <h3 class="card-title"><%= t('welcome.features.task_management.title') %></h3>
+          <p class="text-base-content/70">
+            <%= t('welcome.features.task_management.description') %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+        <div class="card-body items-center text-center">
+          <div class="w-16 h-16 rounded-full bg-neutral text-neutral-content flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+          </div>
+          <h3 class="card-title"><%= t('welcome.features.insights.title') %></h3>
+          <p class="text-base-content/70">
+            <%= t('welcome.features.insights.description') %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<div class="hero py-24 bg-neutral text-neutral-content">
+  <div class="hero-content text-center">
+    <div class="max-w-2xl">
+      <h2 class="text-4xl font-bold mb-6"><%= t('welcome.cta.title') %></h2>
+      <p class="text-lg mb-8 opacity-90">
+        <%= t('welcome.cta.subtitle') %>
+      </p>
+      <a href="/tasks" class="btn btn-primary btn-lg"><%= t('welcome.cta.button') %></a>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer footer-center p-10 bg-base-200 text-base-content">
+  <aside>
+    <p class="font-semibold text-2xl"><%= t('app_name') %></p>
+    <p class="opacity-70"><%= t('welcome.footer.tagline') %></p>
+    <p class="opacity-60 text-sm mt-4"><%= t('welcome.footer.copyright', year: Time.current.year) %></p>
+  </aside>
+</footer>

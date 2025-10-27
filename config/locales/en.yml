@@ -1,31 +1,104 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  app_name: "Clockify"
+  
+  # Common
+  common:
+    get_started: "Get Started"
+    learn_more: "Learn More"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    
+  # Welcome page
+  welcome:
+    hero:
+      title: "Time Tracking Made Simple"
+      subtitle: "Track your time, manage your tasks, and boost your productivity with Clockify. A minimalist approach to time management."
+    stats:
+      simple:
+        title: "Simple"
+        value: "100%"
+        description: "Intuitive interface"
+      fast:
+        title: "Fast"
+        value: "⚡"
+        description: "Lightning quick tracking"
+      focused:
+        title: "Focused"
+        value: "∞"
+        description: "Unlimited productivity"
+    features:
+      title: "Why Choose Clockify?"
+      time_tracking:
+        title: "Time Tracking"
+        description: "Track time effortlessly with our simple and intuitive timer. Start, stop, and manage your tasks with ease."
+      task_management:
+        title: "Task Management"
+        description: "Organize your work with powerful task management features. Keep everything in one place."
+      insights:
+        title: "Insights"
+        description: "Get valuable insights into how you spend your time and optimize your productivity."
+    cta:
+      title: "Ready to boost your productivity?"
+      subtitle: "Start tracking your time today and discover how much more you can accomplish."
+      button: "Start Tracking Now"
+    footer:
+      tagline: "Simple time tracking for everyone"
+      copyright: "© %{year} Clockify. All rights reserved."
+      
+  # Tasks
+  tasks:
+    title: "Tasks"
+    new_task: "New task"
+    show_task: "Show this task"
+    edit_task: "Edit this task"
+    delete_task: "Delete this task"
+    confirm_delete: "Are you sure?"
+    no_tasks: "No tasks yet"
+    
+  # Forms
+  forms:
+    submit: "Submit"
+    save: "Save"
+    cancel: "Cancel"
+    errors:
+      title:
+        one: "%{count} error prohibited this %{model} from being saved:"
+        other: "%{count} errors prohibited this %{model} from being saved:"
+        
+  # Sessions
+  sessions:
+    new:
+      title: "Sign in to your account"
+      email_placeholder: "Enter your email address"
+      password_placeholder: "Enter your password"
+      submit: "Sign in"
+      forgot_password: "Forgot password?"
+      
+  # Passwords
+  passwords:
+    new:
+      title: "Forgot your password?"
+      submit: "Send reset instructions"
+    edit:
+      title: "Reset your password"
+      submit: "Update password"
+      
+  # Notices and alerts
+  notices:
+    task_created: "Task was successfully created."
+    task_updated: "Task was successfully updated."
+    task_destroyed: "Task was successfully destroyed."
+    signed_in: "Signed in successfully."
+    signed_out: "Signed out successfully."
+    
+  # Language names
+  languages:
+    en: "English"
+    zh: "Chinese"
+    
+  # Theme
+  theme:
+    toggle: "Toggle theme"
+    light: "Light"
+    dark: "Dark"
+    system: "System"

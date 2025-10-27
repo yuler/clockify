@@ -1,11 +1,11 @@
-<% content_for :title, "New task" %>
+<% content_for :title, t('tasks.new_task') %>
 
-<h1>New task</h1>
+<h1><%= t('tasks.new_task') %></h1>
 
 <%= render "form", task: @task %>
 
 <br>
 
 <div>
-  <%= link_to "Back to tasks", tasks_path %>
+  <%= link_to t('tasks.title'), tasks_path %>
 </div>
