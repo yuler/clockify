@@ -6,6 +6,7 @@
       "dependencies": {
         "@hotwired/stimulus": "^3.2.2",
         "@hotwired/turbo-rails": "^8.0.18",
+        "daisyui": "^5.3.10",
       },
     },
   },
@@ -17,5 +18,7 @@
     "@hotwired/turbo-rails": ["@hotwired/turbo-rails@8.0.18", "", { "dependencies": { "@hotwired/turbo": "^8.0.18", "@rails/actioncable": ">=7.0" } }, "sha512-iRxd922VSTVH0NzlLDx9T9S8Ep0NPnrLCKva31WIMLNApJgUZKa/a90EFiBa2G6Do+x4xuKZk53dlweiwTyXkQ=="],
 
     "@rails/actioncable": ["@rails/actioncable@8.0.300", "", {}, "sha512-X+jxLnyYciTciEeM9crFFsR6DCodCsnoQIzv4hEST6Lx1rEBEjNQbBopnyDT4gr7lBeHJNfb6fEcvZuWFxUSQg=="],
+
+    "daisyui": ["daisyui@5.3.10", "", {}, "sha512-vmjyPmm0hvFhA95KB6uiGmWakziB2pBv6CUcs5Ka/3iMBMn9S+C3SZYx9G9l2JrgTZ1EFn61F/HrPcwaUm2kLQ=="],
   }
 }
