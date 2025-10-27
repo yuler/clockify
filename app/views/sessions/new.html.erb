@@ -1,13 +1,98 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<div class="min-h-screen flex items-center justify-center bg-base-200 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <h1 class="text-3xl font-bold text-base-content mb-2"><%= t('sessions.new.title') %></h1>
+      <p class="text-base-content/70">Welcome back! Please sign in to your account.</p>
+    </div>
 
-<h1><%= t('sessions.new.title') %></h1>
+    <!-- Flash Messages -->
+    <% if flash[:alert] %>
+      <div class="alert alert-error">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><%= flash[:alert] %></span>
+      </div>
+    <% end %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email, required: true, autofocus: true, autocomplete: "username", placeholder: t('sessions.new.email_placeholder'), value: params[:email] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: t('sessions.new.password_placeholder'), maxlength: 72 %><br>
-  <%= form.submit t('sessions.new.submit') %>
-<% end %>
-<br>
+    <% if flash[:notice] %>
+      <div class="alert alert-success">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><%= flash[:notice] %></span>
+      </div>
+    <% end %>
 
-<%= link_to t('sessions.new.forgot_password'), new_password_path %>
+    <!-- Login Form Card -->
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <%= form_with url: session_path, local: true, class: "space-y-6" do |form| %>
+          <!-- Email Field -->
+          <div class="form-control">
+            <label class="label" for="email">
+              <span class="label-text font-medium">Email Address</span>
+            </label>
+            <%= form.email_field :email, 
+                id: "email",
+                required: true, 
+                autofocus: true, 
+                autocomplete: "username", 
+                placeholder: t('sessions.new.email_placeholder'), 
+                value: params[:email],
+                class: "input input-bordered w-full focus:input-primary" %>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-control">
+            <label class="label" for="password">
+              <span class="label-text font-medium">Password</span>
+            </label>
+            <%= form.password_field :password, 
+                id: "password",
+                required: true, 
+                autocomplete: "current-password", 
+                placeholder: t('sessions.new.password_placeholder'), 
+                maxlength: 72,
+                class: "input input-bordered w-full focus:input-primary" %>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="flex items-center justify-between">
+            <label class="label cursor-pointer">
+              <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" />
+              <span class="label-text ml-2">Remember me</span>
+            </label>
+            <%= link_to t('sessions.new.forgot_password'), new_password_path, 
+                class: "link link-primary text-sm hover:link-hover" %>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-control mt-6">
+            <%= form.submit t('sessions.new.submit'), 
+                class: "btn btn-primary w-full" %>
+          </div>
+        <% end %>
+
+        <!-- Divider -->
+        <div class="divider">or</div>
+
+        <!-- Sign Up Link -->
+        <div class="text-center">
+          <p class="text-sm text-base-content/70">
+            Don't have an account? 
+            <a href="#" class="link link-primary hover:link-hover font-medium">Sign up here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center">
+      <p class="text-xs text-base-content/50">
+        By signing in, you agree to our Terms of Service and Privacy Policy.
+      </p>
+    </div>
+  </div>
+</div>
