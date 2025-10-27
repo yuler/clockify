@@ -21,6 +21,12 @@ zh:
       congratulations: "恭喜！您已达到 100！"
       keep_going: "继续加油！还需 %{remaining} 个即可完成网格！"
       recent_activity: "最近活动"
+      update_value: "更新数值"
+      value_label: "数值"
+      increment: "增加"
+      decrement: "减少"
+      set: "设置"
+      operation_hint: "增加：在当前值上增加 • 减少：从当前值减去 • 设置：直接设置为指定值"
     
     index:
       subtitle:
