@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :tasks do
-    member do
-      post :update_value
-    end
+    resources :task_entries, only: [:create]
   end
   resource :session
   resources :passwords, param: :token
