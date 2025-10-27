@@ -27,6 +27,7 @@ zh:
       decrement: "减少"
       set: "设置"
       operation_hint: "增加：在当前值上增加 • 减少：从当前值减去 • 设置：直接设置为指定值"
+      guest_view_message: "您正在以访客身份查看此任务。只有任务所有者才能修改数值。"
     
     index:
       subtitle:

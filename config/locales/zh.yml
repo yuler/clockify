@@ -85,6 +85,7 @@ zh:
     value_decremented: "数值已减少 %{value}。"
     value_set: "数值已设置为 %{value}。"
     value_update_failed: "数值更新失败：%{error}"
+    unauthorized: "您没有权限执行此操作。"
     signed_in: "登录成功。"
     signed_out: "退出登录成功。"
     

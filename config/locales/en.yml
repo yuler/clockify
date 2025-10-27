@@ -85,6 +85,7 @@ en:
     value_decremented: "Value decremented by %{value}."
     value_set: "Value set to %{value}."
     value_update_failed: "Value update failed: %{error}"
+    unauthorized: "You are not authorized to perform this action."
     signed_in: "Signed in successfully."
     signed_out: "Signed out successfully."
     

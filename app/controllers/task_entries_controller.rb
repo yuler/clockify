@@ -1,5 +1,7 @@
 class TaskEntriesController < ApplicationController
   before_action :set_task
+  allow_unauthenticated_access only: [:create]
+  before_action :check_task_ownership, only: [:create]
 
   # POST /tasks/:task_id/task_entries
   def create
@@ -21,6 +23,12 @@ class TaskEntriesController < ApplicationController
         raise ArgumentError, "Invalid operation"
       end
 
+      # Reload the task to get updated values
+      @task.reload
+      
+      # Broadcast the update to all viewers
+      @task.broadcast_replace_to(@task, "task_updates", partial: "tasks/show", locals: { task: @task })
+
       respond_to do |format|
         format.html { redirect_to @task, notice: notice }
         format.json { render json: { success: true }, status: :created }
@@ -37,5 +45,14 @@ class TaskEntriesController < ApplicationController
 
   def set_task
     @task = Task.find(params.expect(:task_id))
+  end
+
+  def check_task_ownership
+    unless authenticated? && @task.user == Current.user
+      respond_to do |format|
+        format.html { redirect_to @task, alert: t("notices.unauthorized") }
+        format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
+      end
+    end
   end
 end
