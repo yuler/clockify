@@ -8,6 +8,33 @@ en:
     confirm_delete: "Are you sure?"
     no_tasks: "No tasks yet"
     
+    show:
+      status:
+        active: "Active"
+        paused: "Paused"
+        completed: "Completed"
+        archived: "Archived"
+      current_progress: "Current Progress"
+      completion: "Completion"
+      remaining: "remaining"
+      achievement_grid: "Achievement Grid"
+      congratulations: "Congratulations! You've reached 100!"
+      keep_going: "Keep going! %{remaining} more to complete the grid!"
+      recent_activity: "Recent Activity"
+    
+    index:
+      subtitle:
+        one: "You have 1 task"
+        other: "You have %{count} tasks"
+      current_value: "Current Value"
+      entries_count:
+        zero: "No entries"
+        one: "1 entry"
+        other: "%{count} entries"
+      view_details: "View details"
+      empty_description: "Start tracking your progress by creating your first task."
+      create_first_task: "Create your first task"
+    
     form:
       # Section titles
       basic_info_section: "Basic Information"

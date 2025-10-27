@@ -8,6 +8,33 @@ zh:
     confirm_delete: "您确定吗？"
     no_tasks: "暂无任务"
     
+    show:
+      status:
+        active: "活跃"
+        paused: "暂停"
+        completed: "已完成"
+        archived: "已归档"
+      current_progress: "当前进度"
+      completion: "完成度"
+      remaining: "剩余"
+      achievement_grid: "成就网格"
+      congratulations: "恭喜！您已达到 100！"
+      keep_going: "继续加油！还需 %{remaining} 个即可完成网格！"
+      recent_activity: "最近活动"
+    
+    index:
+      subtitle:
+        one: "您有 1 个任务"
+        other: "您有 %{count} 个任务"
+      current_value: "当前值"
+      entries_count:
+        zero: "无记录"
+        one: "1 条记录"
+        other: "%{count} 条记录"
+      view_details: "查看详情"
+      empty_description: "创建您的第一个任务，开始跟踪您的进度。"
+      create_first_task: "创建第一个任务"
+    
     form:
       # 章节标题
       basic_info_section: "基础信息"
