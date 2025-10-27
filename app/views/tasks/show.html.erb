@@ -92,7 +92,7 @@
       <div class="card-body p-4 sm:p-6">
         <h2 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4"><%= t('tasks.show.update_value') %></h2>
         
-        <%= form_with url: update_value_task_path(@task), method: :post, class: "space-y-4" do |form| %>
+        <%= form_with url: task_task_entries_path(@task), method: :post, class: "space-y-4" do |form| %>
           <div class="form-control">
             <%= form.label :value, t('tasks.show.value_label'), class: "label" %>
             <%= form.number_field :value, value: 1, min: 0, max: 100, 
