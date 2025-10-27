@@ -1,17 +1,255 @@
-<%= form_with(model: task) do |form| %>
+<%= form_with(model: task, class: "w-full") do |form| %>
   <% if task.errors.any? %>
-    <div style="color: red">
-      <h2><%= t('forms.errors.title', count: task.errors.count, model: task.model_name.human) %></h2>
-
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div class="alert alert-error mb-6">
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <div>
+        <h3 class="font-bold"><%= t('forms.errors.title', count: task.errors.count, model: task.model_name.human) %></h3>
+        <ul class="list-disc list-inside mt-2">
+          <% task.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div>
-    <%= form.submit t('forms.submit') %>
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <!-- Basic Information Section -->
+      <h2 class="card-title text-2xl mb-6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <%= t('tasks.form.basic_info_section') %>
+      </h2>
+
+      <!-- Task Name -->
+      <div class="form-control mb-6">
+        <label class="label pb-2">
+          <span class="label-text font-medium"><%= t('tasks.form.name') %> <span class="text-error">*</span> <span class="text-xs text-base-content/60">(<%= t('tasks.form.name_helper') %>)</span></span>
+        </label>
+        <%= form.text_field :name, 
+          placeholder: t('tasks.form.name_placeholder'),
+          class: "input input-bordered w-full",
+          required: true,
+          maxlength: 20 %>
+      </div>
+
+      <!-- Slogan -->
+      <div class="form-control mb-6">
+        <label class="label pb-2">
+          <span class="label-text font-medium"><%= t('tasks.form.slogan') %> <span class="text-xs text-base-content/60">(<%= t('tasks.form.slogan_helper') %>)</span></span>
+        </label>
+        <%= form.text_area :slogan, 
+          placeholder: t('tasks.form.slogan_placeholder'),
+          class: "textarea textarea-bordered h-24 w-full",
+          rows: 3 %>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <!-- Emoji Selector -->
+        <div class="form-control">
+          <label class="label pb-2">
+            <span class="label-text font-medium"><%= t('tasks.form.emoji') %> <span class="text-xs text-base-content/60">(<%= t('tasks.form.emoji_helper') %>)</span></span>
+          </label>
+          <%= form.select :emoji, 
+            options_for_select(
+              [['None', '']] + %w[💼 🏃 📚 💰 🏠 🍽️ ⚽ 🎵 ✈️ 🎮 🎨 💻 ❤️ ⭐ 🔥 🚀 🎯 🏆 🏅 👑].map { |e| [e, e] },
+              task.emoji
+            ),
+            {},
+            { 
+              class: "select select-bordered w-full"
+            } %>
+        </div>
+
+        <!-- Background Color Selector -->
+        <div class="form-control">
+          <label class="label pb-2">
+            <span class="label-text font-medium"><%= t('tasks.form.background') %> <span class="text-xs text-base-content/60">(<%= t('tasks.form.background_helper') %>)</span></span>
+          </label>
+          <% 
+            colors = {
+              '#ef4444' => 'red',
+              '#f97316' => 'orange', 
+              '#eab308' => 'yellow',
+              '#22c55e' => 'green',
+              '#3b82f6' => 'blue',
+              '#6366f1' => 'indigo',
+              '#a855f7' => 'purple',
+              '#ec4899' => 'pink',
+              '#6b7280' => 'gray',
+              '#ffffff' => 'white'
+            }
+          %>
+          <select name="task[background]" id="background-select" class="select select-bordered w-full">
+            <option value="">None</option>
+            <% colors.each do |hex, name| %>
+              <option value="<%= hex %>" <%= 'selected' if task.background == hex %>>
+                <span style="display:inline-block;width:14px;height:14px;background-color:<%= hex %>;border:1px solid #ccc;border-radius:3px;margin-right:8px;vertical-align:middle;"></span>
+                <span><%= t("tasks.colors.#{name}") %></span>
+              </option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Task Type Selection -->
+      <h3 class="text-xl font-semibold mb-6 flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        <%= t('tasks.form.task_type_section') %>
+      </h3>
+
+      <div class="form-control mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <% Taskable::TYPES.each_with_index do |type, index| %>
+            <% 
+              is_numerical = type == "NumericalTask"
+              is_disabled = !is_numerical
+              task_key = type.underscore.gsub('_task', '')
+            %>
+            <label class="label cursor-pointer border-2 rounded-lg p-4 transition-all <%= is_disabled ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary' %> <%= task.taskable_type == type ? 'border-primary bg-primary/10' : 'border-base-300' %>">
+              <div class="flex items-center justify-between w-full">
+                <div class="flex items-center gap-3">
+                  <%= form.radio_button :taskable_type, type, 
+                    disabled: is_disabled,
+                    class: "radio radio-primary",
+                    id: "taskable_type_#{task_key}",
+                    checked: is_numerical && task.new_record? %>
+                  <div>
+                    <span class="label-text font-semibold"><%= t("tasks.task_types.#{task_key}") %></span>
+                    <% if is_disabled %>
+                      <span class="label-text-alt text-warning ml-2"><%= t('tasks.task_types.coming_soon') %></span>
+                    <% end %>
+                  </div>
+                </div>
+                <% if is_numerical %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                <% end %>
+              </div>
+            </label>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Numerical Task Specific Fields -->
+      <div id="numerical-task-fields" class="<%= task.taskable_type != 'NumericalTask' && !task.new_record? ? 'hidden' : '' %>">
+        <div class="divider"></div>
+        
+        <h3 class="text-xl font-semibold mb-6 flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
+          </svg>
+          <%= t('tasks.form.numerical_section') %>
+        </h3>
+
+        <%= form.fields_for :taskable, task.taskable || NumericalTask.new do |taskable_form| %>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Initial Value -->
+            <div class="form-control">
+              <label class="label pb-2">
+                <span class="label-text font-medium"><%= t('tasks.form.initial_value') %> <span class="text-xs text-base-content/60">(<%= t('tasks.form.initial_value_helper') %>)</span></span>
+              </label>
+              <%= taskable_form.number_field :value, 
+                placeholder: t('tasks.form.initial_value_placeholder'),
+                step: 0.01,
+                value: task.taskable&.value || 0,
+                class: "input input-bordered w-full" %>
+            </div>
+
+            <!-- Value Unit -->
+            <div class="form-control">
+              <label class="label pb-2">
+                <span class="label-text font-medium"><%= t('tasks.form.value_unit') %> <span class="text-xs text-base-content/60">(<%= t('tasks.form.value_unit_helper') %>)</span></span>
+              </label>
+              <%= taskable_form.text_field :value_unit, 
+                placeholder: t('tasks.form.value_unit_placeholder'),
+                class: "input input-bordered w-full",
+                maxlength: 50 %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Action Buttons -->
+      <div class="card-actions justify-end mt-6">
+        <%= link_to t('forms.cancel'), tasks_path, class: "btn btn-ghost" %>
+        <%= form.submit t('forms.submit'), class: "btn btn-primary" %>
+      </div>
+    </div>
   </div>
+
+  <!-- JavaScript for dynamic form behavior -->
+  <style>
+    #background-select option {
+      display: flex;
+      align-items: center;
+    }
+    #background-select option[data-color]:not([data-color=""]):before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background-color: attr(data-color);
+      vertical-align: middle;
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const taskTypeRadios = document.querySelectorAll('input[name="task[taskable_type]"]');
+      const numericalFields = document.getElementById('numerical-task-fields');
+      
+      // Toggle numerical task fields visibility
+      taskTypeRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'NumericalTask' && this.checked) {
+            numericalFields.classList.remove('hidden');
+          } else if (this.checked) {
+            numericalFields.classList.add('hidden');
+          }
+        });
+      });
+      
+      // Background color selector with color box in options
+      const bgSelect = document.getElementById('background-select');
+      
+      if (bgSelect) {
+        // Add color indicators to options
+        Array.from(bgSelect.options).forEach(option => {
+          const color = option.getAttribute('data-color');
+          if (color && option.value !== '') {
+            // Create color indicator span
+            const originalText = option.textContent;
+            const colorBox = document.createElement('span');
+            colorBox.style.display = 'inline-block';
+            colorBox.style.width = '14px';
+            colorBox.style.height = '14px';
+            colorBox.style.backgroundColor = color;
+            colorBox.style.border = '1px solid #ccc';
+            colorBox.style.borderRadius = '3px';
+            colorBox.style.marginRight = '8px';
+            colorBox.style.verticalAlign = 'middle';
+            colorBox.innerHTML = '&nbsp;';
+            
+            // Update option text with color box
+            option.textContent = '■ ' + originalText;
+            option.style.paddingLeft = '8px';
+          }
+        });
+      }
+    });
+  </script>
 <% end %>

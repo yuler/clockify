@@ -7,7 +7,8 @@ en:
     learn_more: "Learn More"
     sign_in: "Sign in"
     sign_out: "Sign out"
-    
+    none: "None"
+
   # Welcome page
   welcome:
     hero:
@@ -45,15 +46,7 @@ en:
       tagline: "Simple time tracking for everyone"
       copyright: "© %{year} Clockify. All rights reserved."
       
-  # Tasks
-  tasks:
-    title: "Tasks"
-    new_task: "New task"
-    show_task: "Show this task"
-    edit_task: "Edit this task"
-    delete_task: "Delete this task"
-    confirm_delete: "Are you sure?"
-    no_tasks: "No tasks yet"
+  # Tasks are now in config/locales/tasks.en.yml
     
   # Forms
   forms:

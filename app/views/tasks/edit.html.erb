@@ -1,12 +1,30 @@
 <% content_for :title, t('tasks.edit_task') %>
 
-<h1><%= t('tasks.edit_task') %></h1>
+<div class="container mx-auto px-4 py-8">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-4 mb-2">
+      <%= link_to @task, class: "btn btn-ghost btn-sm" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        <%= t('tasks.show_task') %>
+      <% end %>
+      <span class="text-base-content/50">|</span>
+      <%= link_to tasks_path, class: "btn btn-ghost btn-sm" do %>
+        <%= t('tasks.title') %>
+      <% end %>
+    </div>
+    
+    <h1 class="text-4xl font-bold text-base-content flex items-center gap-3">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+      </svg>
+      <%= t('tasks.edit_task') %>
+    </h1>
+    <p class="text-base-content/70 mt-2">Update your task details and settings.</p>
+  </div>
 
-<%= render "form", task: @task %>
-
-<br>
-
-<div>
-  <%= link_to t('tasks.show_task'), @task %> |
-  <%= link_to t('tasks.title'), tasks_path %>
+  <!-- Form -->
+  <%= render "form", task: @task %>
 </div>

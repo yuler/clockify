@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "clockify",
   "private": true,
   "packageManager": "bun@1.2.18",
   "scripts": {

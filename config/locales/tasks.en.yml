@@ -1,0 +1,86 @@
+en:
+  tasks:
+    title: "Tasks"
+    new_task: "New task"
+    show_task: "Show this task"
+    edit_task: "Edit this task"
+    delete_task: "Delete this task"
+    confirm_delete: "Are you sure?"
+    no_tasks: "No tasks yet"
+    
+    form:
+      # Section titles
+      basic_info_section: "Basic Information"
+      task_type_section: "Task Type"
+      visual_section: "Visual Customization"
+      details_section: "Task Details"
+      numerical_section: "Numerical Task Settings"
+      
+      # Fields
+      emoji: "Emoji"
+      emoji_placeholder: "None (optional)"
+      emoji_helper: "optional"
+      
+      background: "Background Color"
+      background_helper: "optional"
+      
+      name: "Task Name"
+      name_placeholder: "Enter task name"
+      name_helper: "required, max 20 chars"
+      
+      slogan: "Slogan"
+      slogan_placeholder: "A motivational slogan for your task (optional)"
+      slogan_helper: "optional"
+      
+      task_type: "Task Type"
+      
+      initial_value: "Initial Value"
+      initial_value_placeholder: "0"
+      initial_value_helper: "starting value"
+      
+      value_unit: "Value Unit"
+      value_unit_placeholder: "e.g. points, items, hours"
+      value_unit_helper: "unit of measurement"
+      
+    task_types:
+      numerical: "Numerical Task"
+      progress: "Progress Task"
+      duration: "Duration Task"
+      reduction: "Reduction Task"
+      custom: "Custom Task"
+      coming_soon: "(Coming Soon)"
+      
+    emojis:
+      work: "💼"
+      health: "🏃"
+      learning: "📚"
+      money: "💰"
+      home: "🏠"
+      food: "🍽️"
+      sport: "⚽"
+      music: "🎵"
+      travel: "✈️"
+      game: "🎮"
+      art: "🎨"
+      code: "💻"
+      heart: "❤️"
+      star: "⭐"
+      fire: "🔥"
+      rocket: "🚀"
+      target: "🎯"
+      trophy: "🏆"
+      medal: "🏅"
+      crown: "👑"
+      
+    colors:
+      red: "Red"
+      orange: "Orange"
+      yellow: "Yellow"
+      green: "Green"
+      blue: "Blue"
+      indigo: "Indigo"
+      purple: "Purple"
+      pink: "Pink"
+      gray: "Gray"
+      white: "White"
+

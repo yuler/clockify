@@ -7,6 +7,7 @@ zh:
     learn_more: "了解更多"
     sign_in: "登录"
     sign_out: "退出登录"
+    none: "无"
     
   # 欢迎页面
   welcome:
@@ -45,15 +46,7 @@ zh:
       tagline: "为所有人提供简单的时间追踪"
       copyright: "© %{year} Clockify. 版权所有。"
       
-  # 任务
-  tasks:
-    title: "任务"
-    new_task: "新建任务"
-    show_task: "查看此任务"
-    edit_task: "编辑此任务"
-    delete_task: "删除此任务"
-    confirm_delete: "您确定吗？"
-    no_tasks: "暂无任务"
+  # 任务相关翻译现在在 config/locales/tasks.zh.yml
     
   # 表单
   forms:
