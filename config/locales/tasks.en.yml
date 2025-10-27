@@ -21,6 +21,12 @@ en:
       congratulations: "Congratulations! You've reached 100!"
       keep_going: "Keep going! %{remaining} more to complete the grid!"
       recent_activity: "Recent Activity"
+      update_value: "Update Value"
+      value_label: "Value"
+      increment: "Increment"
+      decrement: "Decrement"
+      set: "Set"
+      operation_hint: "Increment: Add to current value • Decrement: Subtract from current value • Set: Set to specific value"
     
     index:
       subtitle:

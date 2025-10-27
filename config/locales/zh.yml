@@ -81,6 +81,10 @@ zh:
     task_created: "任务已成功创建。"
     task_updated: "任务已成功更新。"
     task_destroyed: "任务已成功删除。"
+    value_incremented: "数值已增加 %{value}。"
+    value_decremented: "数值已减少 %{value}。"
+    value_set: "数值已设置为 %{value}。"
+    value_update_failed: "数值更新失败：%{error}"
     signed_in: "登录成功。"
     signed_out: "退出登录成功。"
     
