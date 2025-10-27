@@ -56,7 +56,7 @@
           </label>
           <%= form.select :emoji, 
             options_for_select(
-              [['None', '']] + %w[💼 🏃 📚 💰 🏠 🍽️ ⚽ 🎵 ✈️ 🎮 🎨 💻 ❤️ ⭐ 🔥 🚀 🎯 🏆 🏅 👑].map { |e| [e, e] },
+              [[t('common.none'), '']] + %w[ 🌺 💼 🏃 📚 💰 🏠 🍽️ ⚽ 🎵 ✈️ 🎮 🎨 💻 ❤️ ⭐ 🔥 🚀 🎯 🏆 🏅 👑].map { |e| [e, e] },
               task.emoji
             ),
             {},
@@ -85,7 +85,7 @@
             }
           %>
           <select name="task[background]" id="background-select" class="select select-bordered w-full">
-            <option value="">None</option>
+            <option value=""><%= t('common.none') %></option>
             <% colors.each do |hex, name| %>
               <option value="<%= hex %>" <%= 'selected' if task.background == hex %>>
                 <span style="display:inline-block;width:14px;height:14px;background-color:<%= hex %>;border:1px solid #ccc;border-radius:3px;margin-right:8px;vertical-align:middle;"></span>
