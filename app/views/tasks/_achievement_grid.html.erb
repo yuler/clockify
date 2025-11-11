@@ -1,0 +1,36 @@
+<% 
+  current_value ||= task.taskable.value.to_i
+  total_cells ||= 100
+  filled_cells ||= [current_value, total_cells].min
+  task_emoji ||= task.emoji.present? ? task.emoji : '⭐'
+%>
+
+<div class="card bg-base-100 shadow-lg mb-6" id="achievement-grid-container">
+  <div class="card-body p-4 sm:p-6">
+    <h2 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4"><%= t('tasks.show.achievement_grid') %></h2>
+    <div class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-1 sm:gap-2 p-2 sm:p-4 bg-base-200 rounded-lg" id="achievement-grid">
+      <% total_cells.times do |i| %>
+        <% is_filled = i < filled_cells %>
+        <div class="aspect-square rounded flex items-center justify-center text-lg sm:text-xl md:text-2xl <%= is_filled ? 'shadow-md' : 'bg-base-300' %> animate-fade-in"
+             style="<%= is_filled ? "background-color: #{task.background || '#6366f1'}; " : '' %>animation-delay: <%= i * 0.02 %>s;"
+             title="<%= i + 1 %> / 100">
+          <%= is_filled ? task_emoji : '' %>
+        </div>
+      <% end %>
+    </div>
+    
+    <% if current_value >= 100 %>
+      <div class="alert alert-success mt-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><%= t('tasks.show.congratulations') %></span>
+      </div>
+    <% else %>
+      <div class="text-center mt-4 text-base-content/60">
+        <%= t('tasks.show.keep_going', remaining: 100 - filled_cells) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

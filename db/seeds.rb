@@ -8,8 +8,11 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-unless User.exists?(email: "is.yuler@gmail.com")
-  puts "Creating user is.yuler@gmail.com..."
-  password_digest = BCrypt::Password.create("123456")
-  User.create!(email: "is.yuler@gmail.com", password_digest: password_digest)
+admin_email = ENV.fetch("ADMIN_EMAIL", "admin@example.com")
+admin_password = ENV.fetch("ADMIN_PASSWORD", "123456")
+
+unless User.exists?(email: admin_email)
+  puts "Creating user #{admin_email}..."
+  password_digest = BCrypt::Password.create(admin_password)
+  User.create!(email: admin_email, password_digest: password_digest)
 end

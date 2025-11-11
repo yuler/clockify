@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-  allow_unauthenticated_access only: [:show]
+  allow_unauthenticated_access only: [ :show ]
 
   # GET /tasks or /tasks.json
   def index
@@ -9,6 +9,11 @@ class TasksController < ApplicationController
 
   # GET /tasks/1 or /tasks/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+      format.json { render :show, status: :ok, location: @task }
+    end
   end
 
   # GET /tasks/new

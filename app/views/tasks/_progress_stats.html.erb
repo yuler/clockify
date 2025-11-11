@@ -1,0 +1,45 @@
+<% 
+  current_value ||= task.taskable.value.to_i
+  total_cells ||= 100
+  filled_cells ||= [current_value, total_cells].min
+  progress_percentage ||= (filled_cells.to_f / total_cells * 100).round(1)
+%>
+
+<div class="card bg-base-100 shadow-lg mb-6" id="progress-stats">
+  <div class="card-body p-4 sm:p-6">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mb-4">
+      <div class="text-center sm:text-left animate-fade-in">
+        <div class="text-sm text-base-content/60 mb-1"><%= t('tasks.show.current_progress') %></div>
+        <div class="text-3xl sm:text-4xl font-bold" 
+             style="color: <%= task.background || '#6366f1' %>">
+          <%= current_value %>
+          <span class="text-xl sm:text-2xl text-base-content/60">/ 100</span>
+        </div>
+        <% if task.taskable.value_unit.present? %>
+          <div class="text-sm text-base-content/60 mt-1">
+            <%= task.taskable.value_unit %>
+          </div>
+        <% end %>
+      </div>
+      <div class="text-center sm:text-right animate-fade-in">
+        <div class="text-sm text-base-content/60 mb-1"><%= t('tasks.show.completion') %></div>
+        <div class="text-3xl sm:text-4xl font-bold" 
+             style="color: <%= task.background || '#6366f1' %>">
+          <%= progress_percentage %>%
+        </div>
+        <div class="text-sm text-base-content/60 mt-1">
+          <span><%= 100 - filled_cells %></span>
+          <%= t('tasks.show.remaining') %>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="w-full bg-base-200 rounded-full h-3 overflow-hidden">
+      <div class="h-3 rounded-full transition-all duration-1000 ease-out" 
+           style="width: <%= progress_percentage %>%; background-color: <%= task.background || '#6366f1' %>">
+      </div>
+    </div>
+  </div>
+</div>
+

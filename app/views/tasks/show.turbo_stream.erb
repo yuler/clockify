@@ -1,134 +1,20 @@
+<% 
+  current_value = @task.taskable.value.to_i
+  total_cells = 100
+  filled_cells = [current_value, total_cells].min
+  progress_percentage = (filled_cells.to_f / total_cells * 100).round(1)
+  task_emoji = @task.emoji.present? ? @task.emoji : '⭐'
+%>
+
 <%= turbo_stream.replace "progress-stats" do %>
-  <% 
-    current_value = task.taskable.value.to_i
-    total_cells = 100
-    filled_cells = [current_value, total_cells].min
-    progress_percentage = (filled_cells.to_f / total_cells * 100).round(1)
-    task_emoji = task.emoji.present? ? task.emoji : '⭐'
-  %>
-  <div class="card bg-base-100 shadow-lg mb-6" id="progress-stats">
-    <div class="card-body p-4 sm:p-6">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mb-4">
-        <div class="text-center sm:text-left">
-          <div class="text-sm text-base-content/60 mb-1"><%= t('tasks.show.current_progress') %></div>
-          <div class="text-3xl sm:text-4xl font-bold counter-animation" 
-               style="color: <%= task.background || '#6366f1' %>"
-               data-target="<%= current_value %>">
-            <%= current_value %>
-            <span class="text-xl sm:text-2xl text-base-content/60">/ 100</span>
-          </div>
-          <% if task.taskable.value_unit.present? %>
-            <div class="text-sm text-base-content/60 mt-1">
-              <%= task.taskable.value_unit %>
-            </div>
-          <% end %>
-        </div>
-        <div class="text-center sm:text-right">
-          <div class="text-sm text-base-content/60 mb-1"><%= t('tasks.show.completion') %></div>
-          <div class="text-3xl sm:text-4xl font-bold counter-animation" 
-               style="color: <%= task.background || '#6366f1' %>"
-               data-target="<%= progress_percentage %>">
-            <%= progress_percentage %>%
-          </div>
-          <div class="text-sm text-base-content/60 mt-1">
-            <span class="counter-animation" data-target="<%= 100 - filled_cells %>"><%= 100 - filled_cells %></span>
-            <%= t('tasks.show.remaining') %>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Progress Bar -->
-      <div class="w-full bg-base-200 rounded-full h-3 overflow-hidden">
-        <div class="progress-bar-animation h-3 rounded-full" 
-             style="width: <%= progress_percentage %>%; background-color: <%= task.background || '#6366f1' %>"
-             data-width="<%= progress_percentage %>">
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render 'progress_stats', task: @task, current_value: current_value, filled_cells: filled_cells, progress_percentage: progress_percentage %>
 <% end %>
 
 <%= turbo_stream.replace "achievement-grid-container" do %>
-  <% 
-    current_value = task.taskable.value.to_i
-    total_cells = 100
-    filled_cells = [current_value, total_cells].min
-    task_emoji = task.emoji.present? ? task.emoji : '⭐'
-  %>
-  <div class="card bg-base-100 shadow-lg mb-6" id="achievement-grid-container">
-    <div class="card-body p-4 sm:p-6">
-      <h2 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4"><%= t('tasks.show.achievement_grid') %></h2>
-      <div class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-1 sm:gap-2 p-2 sm:p-4 bg-base-200 rounded-lg" id="achievement-grid">
-        <% total_cells.times do |i| %>
-          <% is_filled = i < filled_cells %>
-          <div class="grid-cell aspect-square rounded flex items-center justify-center text-lg sm:text-xl md:text-2xl bg-base-300 opacity-0"
-               data-index="<%= i %>"
-               data-filled="<%= is_filled %>"
-               data-emoji="<%= task_emoji %>"
-               style="animation-delay: <%= i * 0.02 %>s;"
-               title="<%= i + 1 %> / 100">
-          </div>
-        <% end %>
-      </div>
-      
-      <% if current_value >= 100 %>
-        <div class="alert alert-success mt-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <span><%= t('tasks.show.congratulations') %></span>
-        </div>
-      <% else %>
-        <div class="text-center mt-4 text-base-content/60">
-          <%= t('tasks.show.keep_going', remaining: 100 - filled_cells) %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= render 'achievement_grid', task: @task, current_value: current_value, filled_cells: filled_cells, task_emoji: task_emoji %>
 <% end %>
 
 <%= turbo_stream.replace "recent-activity" do %>
-  <% recent_entries = task.entries.order(created_at: :desc).limit(5) %>
-  <% if recent_entries.any? %>
-    <div class="card bg-base-100 shadow-lg mb-6" id="recent-activity">
-      <div class="card-body p-4 sm:p-6">
-        <h2 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4"><%= t('tasks.show.recent_activity') %></h2>
-        <div class="space-y-2">
-          <% recent_entries.each do |entry| %>
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 bg-base-200 rounded">
-              <div>
-                <span class="font-medium capitalize"><%= entry.operation %></span>
-                <span class="text-base-content/60 text-sm ml-2">
-                  <%= entry.value_before %> → <%= entry.value_after %>
-                </span>
-              </div>
-              <div class="text-sm text-base-content/60">
-                <%= entry.created_at.strftime('%Y-%m-%d %H:%M') %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  <% end %>
+  <% recent_entries = @task.entries.order(created_at: :desc).limit(5) %>
+  <%= render 'recent_activity', recent_entries: recent_entries %>
 <% end %>
-
-<script>
-  // Re-run animations after turbo stream update
-  document.addEventListener('turbo:frame-load', function() {
-    // Animate grid cells
-    const cells = document.querySelectorAll('.grid-cell');
-    cells.forEach((cell, index) => {
-      const isFilled = cell.dataset.filled === 'true';
-      const emoji = cell.dataset.emoji;
-      
-      setTimeout(() => {
-        if (isFilled) {
-          cell.textContent = emoji;
-          cell.classList.add('shadow-md');
-          cell.style.backgroundColor = '<%= task.background || "#6366f1" %>';
-        }
-      }, index * 20);
-    });
-  });
-</script>

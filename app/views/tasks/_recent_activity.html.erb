@@ -1,0 +1,28 @@
+<div class="card bg-base-100 shadow-lg mb-6" id="recent-activity" style="<%= 'display: none;' unless recent_entries.any? %>">
+  <div class="card-body p-4 sm:p-6">
+    <h2 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4"><%= t('tasks.show.recent_activity') %></h2>
+    <% if recent_entries.any? %>
+      <div class="space-y-2">
+        <% recent_entries.each_with_index do |entry, index| %>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-3 bg-base-200 rounded animate-fade-in"
+               style="animation-delay: <%= index * 0.1 %>s;">
+            <div>
+              <span class="font-medium capitalize"><%= entry.operation %></span>
+              <span class="text-base-content/60 text-sm ml-2">
+                <%= entry.value_before %> → <%= entry.value_after %>
+              </span>
+            </div>
+            <div class="text-sm text-base-content/60">
+              <%= entry.created_at.strftime('%Y-%m-%d %H:%M') %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="text-center text-base-content/60">
+        <%= t('tasks.show.no_activity_yet', default: 'No activity yet') %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
